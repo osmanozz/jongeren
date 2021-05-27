@@ -15,10 +15,12 @@ CREATE TABLE jongere(
     PRIMARY KEY (jongerecode)
 );
 CREATE TABLE jongereactivitetit(
+    ID INT NOT NULL AUTO_INCREMENT,
     jongerecode INT NOT NULL,
     actiecode INT NOT NULL,
     startdatum DATE,
     afgerond TINYINT(1),
+    PRIMARY KEY (ID),
     FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode),
     FOREIGN KEY (actiecode) REFERENCES activiteit(activiteitcode)
 );
@@ -29,9 +31,11 @@ CREATE TABLE instituut(
     PRIMARY KEY (instituutcode)
 );
 CREATE TABLE jongereinstituut(
+    ID INT NOT NULL AUTO_INCREMENT,
     jongerecode INT NOT NULL,
     instituutscode INT NOT NULL,
     startdatum DATE,
+    PRIMARY KEY (ID),
     FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode),
     FOREIGN KEY (instituutscode) REFERENCES instituut(instituutcode)
 );
