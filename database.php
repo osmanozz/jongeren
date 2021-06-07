@@ -21,4 +21,48 @@ class database{
             die("Connection failed!-> " . $exception.getMessage());
         }
     }
+        
+       public function insert($sql, $placeholder) {
+
+        try {
+            $this->dbh->beginTransaction();
+
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute($placeholder);
+            $this->dbh->commit();
+
+        } catch(Expection $e) {
+            $this->pdo->rollback();
+            throw $e;
+        }
+       }
+
+       public function login($username, $password) {
+
+            $sql = "SELECT id, username, password FROM medewerker WHERE username= :username";
+            $stmt = $this->dbh->prepare($sql);
+
+            $stmt->execute([
+                'username'=> $username
+            ]);
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(count($result) > 0){
+
+                if($username && password_verify($password, $result['password'])){
+
+                    session_start();
+                    $_SESSION['id'] = $result['id'];
+                    $_SESSION['username'] = $result['username'];
+                    $_SESSION['is_logged_in'] = true;
+                    
+                    header("location: welcome.php");
+    
+                }else{
+                    echo 'Username or password is incorrect.';
+                }
+       }
+    }
+}
     ?>

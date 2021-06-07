@@ -1,4 +1,4 @@
- <form  method="post">
+ <form  method="POST">
         <h1>Inloggen admin</h1>
         
         <fieldset>
@@ -12,7 +12,17 @@
  </form>
 
 <?php
+
 include "database.php";
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+
+      $db = new database();
+      $db->login($username, $password);      
+  }
 
 
 ?>
