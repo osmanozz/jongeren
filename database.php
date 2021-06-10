@@ -22,7 +22,7 @@ class database{
         }
     }
         
-       public function insert($sql, $placeholder) {
+       public function insert($sql, $placeholder, $location=NULL) {
 
         try {
             $this->dbh->beginTransaction();
@@ -63,6 +63,18 @@ class database{
                     echo 'Username or password is incorrect.';
                 }
        }
+    }
+
+    public function select($sql, $placeholder = []){
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->execute($placeholder);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!empty($result)){
+            return $result;
+        }
+
+        return;
     }
 }
     ?>

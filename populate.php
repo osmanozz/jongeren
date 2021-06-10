@@ -12,4 +12,4 @@ $placeholder = [
 $db = new database();
 $db->insert($sql, $placeholder);
 
-?>
+?> 
