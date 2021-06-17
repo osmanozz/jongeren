@@ -23,8 +23,9 @@ CREATE TABLE jongereactivitetit(
     startdatum DATE NOT NULL,
     afgerond TINYINT,
     PRIMARY KEY (ID),
-    FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode),
-    FOREIGN KEY (actiecode) REFERENCES activiteit(activiteitcode)
+    FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode) ON DELETE CASCADE,
+    FOREIGN KEY (actiecode) REFERENCES activiteit(activiteitcode) ON DELETE CASCADE 
+    
 );
 
 CREATE TABLE instituut(
@@ -40,8 +41,8 @@ CREATE TABLE jongereinstituut(
     instituutscode INT NOT NULL,
     startdatum DATE NOT NULL,
     PRIMARY KEY (ID),
-    FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode),
-    FOREIGN KEY (instituutscode) REFERENCES instituut(instituutcode)
+    FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode) ON DELETE CASCADE,
+    FOREIGN KEY (instituutscode) REFERENCES instituut(instituutcode) ON DELETE CASCADE
 );
 
 CREATE TABLE medewerker(
