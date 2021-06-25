@@ -6,13 +6,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once 'database.php';
     $db = new database();
 
-    $sql = "INSERT INTO instituut VALUES (:id, :instituut, :telefoon)";
+    $sql = "INSERT INTO medewerker VALUES (:medewerkercode, :username, :password)";
     $placeholder = [
-    'id'=> NULL,
-    'instituut'=> $_POST['instituut'],
-    'telefoon'=> $_POST['telefoon']
+    'medewerkercode'=> NULL,
+    'username'=> $_POST['username'],
+    'password'=> $_POST['password']
 ];
-$db->insert($sql, $placeholder, "overzicht-instituut.php");
+$db->insert($sql, $placeholder, "overzicht-medewerker.php");
 }
 
 ?>
@@ -26,8 +26,8 @@ $db->insert($sql, $placeholder, "overzicht-instituut.php");
 </head>
 <body>
     <form method="POST">
-        <input type="text" name="instituut">
-        <input type="text" name="telefoon">
+        <input type="text" name="username">
+        <input type="text" name="password">
         <input type="submit" value="Verzenden">
     </form>
 </body>

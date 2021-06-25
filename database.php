@@ -26,7 +26,6 @@ class database{
 
         try {
             $this->dbh->beginTransaction();
-
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute($placeholder);
             $this->dbh->commit();
@@ -76,5 +75,21 @@ class database{
 
         return;
     }
+    
+
+    public function edit($sql, $placeholder, $file) {
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->execute($placeholder);
+        header("location: " . $file);
+    }
+    public function delete($sql, $placeholder, $file) {
+
+        $statement = $this->dbh->prepare($sql);
+        $statement->execute($placeholder);
+        header("location: " . $file);
+        exit;
+    }
 }
+
+
     ?>
