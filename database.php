@@ -38,7 +38,7 @@ class database{
 
        public function login($username, $password) {
 
-            $sql = "SELECT id, username, password FROM medewerker WHERE username= :username";
+            $sql = "SELECT medewerkercode, username, password FROM medewerker WHERE username= :username";
             $stmt = $this->dbh->prepare($sql);
 
             $stmt->execute([
@@ -52,7 +52,7 @@ class database{
                 if($username && password_verify($password, $result['password'])){
 
                     session_start();
-                    $_SESSION['id'] = $result['id'];
+                    $_SESSION['medewerkercode'] = $result['medewerkercode'];
                     $_SESSION['username'] = $result['username'];
                     $_SESSION['is_logged_in'] = true;
                     
